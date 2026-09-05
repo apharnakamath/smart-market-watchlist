@@ -1,0 +1,8 @@
+fastapi>=0.110
+uvicorn[standard]>=0.29
+sqlalchemy>=2.0
+pydantic>=2.0
+# optional: only used if REDIS_URL is set at runtime; the app falls back
+# to an in-process cache automatically if this isn't installed or no
+# Redis server is reachable.
+redis>=5.0

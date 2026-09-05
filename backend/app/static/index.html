@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Smart Market Watchlist</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark">◆</span>
+        <div>
+          <h1>Smart Watchlist</h1>
+          <p class="tagline">A triage list, not a price grid.</p>
+        </div>
+      </div>
+      <div class="user-box">
+        <label for="username">Watching as</label>
+        <input id="username" type="text" spellcheck="false" />
+        <span id="cache-badge" class="badge muted" title="Which fan-out backend the server is using"></span>
+      </div>
+    </header>
+
+    <main>
+      <section class="panel digest-panel">
+        <div class="panel-header">
+          <h2>What deserves your attention <span id="digest-count" class="count-pill">0</span></h2>
+          <button id="mark-all-seen" class="ghost-btn">Mark all as read</button>
+        </div>
+        <p class="panel-sub">Ranked by attention score — statistical surprise × volume × attribution confidence, not by what ticked last.</p>
+        <div id="digest-list" class="digest-list">
+          <div class="empty-state">No unread signals yet. The simulated market updates every few seconds — significant moves will land here.</div>
+        </div>
+      </section>
+
+      <section class="panel watchlist-panel">
+        <div class="panel-header">
+          <h2>Watchlist</h2>
+        </div>
+        <form id="add-form" class="add-form">
+          <input id="add-input" list="symbol-suggestions" placeholder="Add a ticker (e.g. AAPL)" autocomplete="off" />
+          <datalist id="symbol-suggestions"></datalist>
+          <button type="submit">Add</button>
+        </form>
+        <div id="watchlist" class="watchlist"></div>
+      </section>
+    </main>
+
+    <dialog id="detail-modal">
+      <div class="modal-inner">
+        <button id="close-modal" class="ghost-btn close-btn">✕</button>
+        <h2 id="modal-ticker"></h2>
+        <canvas id="modal-chart" width="640" height="220"></canvas>
+        <h3>Change history</h3>
+        <div id="modal-events"></div>
+      </div>
+    </dialog>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
