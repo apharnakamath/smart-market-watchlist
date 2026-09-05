@@ -1,8 +1,8 @@
 # Smart Market Watchlist
 
-> **A watchlist that tells you what deserves your attention — not just what changed.**
+> **A watchlist that tells you what deserves your attention, not just what changed.**
 
-Most market watchlists answer one question: **"What are my stocks doing?"**
+Most market watchlists answer one question: **What are my stocks doing?**
 
 This project answers a more useful one:
 
@@ -14,7 +14,7 @@ Instead of presenting a chronological grid of prices, Smart Market Watchlist tur
 
 ## Why this exists
 
-A flat rule such as `"show every stock that moved more than 3%"` is not very useful.
+A flat rule such as `show every stock that moved more than 3%` is not very useful.
 
 A 3% move can be:
 
@@ -35,11 +35,11 @@ Attribution + market-wide context
         ↓
 Attention score
         ↓
-"What deserves your attention"
+What deserves your attention?
         ↓
 Server-side unread state
         ↓
-"What changed since you last checked"
+What changed since you last checked?
 ```
 
 ---
@@ -109,7 +109,7 @@ The result is a **triage list rather than a price grid**.
 
 ---
 
-# "What changed since I last checked?"
+## What changed since I last checked?
 
 This is the main state-management feature of the project.
 
@@ -155,10 +155,10 @@ Market data should not be treated as if every observation were equally trustwort
 
 `PriceObservation` is therefore **append-only**. Every observation retains:
 
-- `source` — where the observation came from,
-- `observed_at` — when the price was observed,
-- `ingested_at` — when the system received it, and
-- `confidence_tier` — e.g. `high`, `delayed`, or `disputed`.
+- `source` : where the observation came from,
+- `observed_at` : when the price was observed,
+- `ingested_at` : when the system received it, and
+- `confidence_tier` : e.g. `high`, `delayed`, or `disputed`.
 
 The UI exposes observation age as a staleness indicator instead of hiding it.
 
@@ -256,10 +256,10 @@ The important architectural boundary is already present: **raw market observatio
 ### Backend
 
 - **Python 3.10+**
-- **FastAPI** — REST API and SSE streaming
-- **SQLAlchemy** — database abstraction / ORM
-- **SQLite** — zero-setup persistence for the demo
-- **Redis (optional)** — distributed reverse-index / pub-sub backend
+- **FastAPI** : REST API and SSE streaming
+- **SQLAlchemy** : database abstraction / ORM
+- **SQLite** : zero-setup persistence for the demo
+- **Redis (optional)** : distributed reverse-index / pub-sub backend
 
 ### Frontend
 
@@ -329,30 +329,6 @@ Then visit:
 ```text
 http://localhost:8001
 ```
-
----
-
-# Suggested demo flow
-
-For a quick evaluation/demo:
-
-1. Start the application.
-2. Enter a username.
-3. Add several symbols to the watchlist.
-4. Watch the latest observations arrive.
-5. Wait for the simulator to generate an unusual move.
-6. Open the attention digest and inspect:
-   - surprise / z-score,
-   - volume anomaly,
-   - attribution,
-   - market-wide status, and
-   - attention score.
-7. Open a symbol to inspect its event history.
-8. Leave the page and return later.
-9. Observe that meaningful events remain unread until they are acknowledged.
-10. Open the same username in another browser to demonstrate server-side persistence.
-
-Because the feed is simulated, meaningful events are deliberately injected so the core product behaviour can be demonstrated without waiting for a real market event.
 
 ---
 
